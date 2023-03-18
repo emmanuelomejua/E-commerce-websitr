@@ -15,11 +15,11 @@ const  express = require('express')
 
 
 //import routes
-const userRoute = require('./routes/user.js')
-const authRoute = require('./routes/auth')
-const productsRoute = require('./routes/product')
-const orderRoute = require('./routes/order')
-const cartRoute = require('./routes/cart')
+const userRoute = require('./routes/userRoute.js')
+const authRoute = require('./routes/authRoute')
+const productsRoute = require('./routes/productRoute')
+const orderRoute = require('./routes/orderRoute')
+const cartRoute = require('./routes/cartRoute')
 
 //bind with express server
 const app = express();
@@ -42,12 +42,12 @@ app.use('/api/products', productsRoute)
 app.use('/api/order', orderRoute)
 app.use('/api/cart', cartRoute)
 
-
+//DB config
 set('strictQuery', true)
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/ecommerce'
+const db_uri = process.env.MONGO_URL
 
-connect(MONGO_URL, {
+connect(db_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -55,7 +55,7 @@ connect(MONGO_URL, {
 .catch((error)=> console.log(error.message))
 
 
-const PORT = 3500
+const PORT = process.env.PORT || 3500
 
 app.listen(PORT, () => {
     console.log(`Server started at ${PORT}`)

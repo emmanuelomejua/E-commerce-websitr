@@ -1,10 +1,7 @@
-const router = require('express').Router()
-
 const Order = require('../models/Order');
-const { verifyTokenAndAuthorization, verifyTokenAndAdmin, verifyToken } = require('./verifyToken')
+const { verifyTokenAndAuthorization, verifyTokenAndAdmin, verifyToken } = require('../verifyToken')
 
-// CREATE
-router.post('/', verifyToken, async (req, res) => {
+const createOrder = async (req, res) => {
     const newOrder = new Cart(req.body);
 
     try {
@@ -13,36 +10,30 @@ router.post('/', verifyToken, async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-})
+}
 
-// UPDATE
-router.put('/:id',  verifyTokenAndAdmin, async (req,res) => {
+const updateOrder = async (req, res) => {
+    try {
+        const updatedOrder = await Cart.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        }, {new: true});
+        res.status(200).json(updatedOrder)
+       } catch (error) {
+        res.status(500).json(error)
+       }
+    
+}
 
-   try {
-    const updatedOrder = await Cart.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, {new: true});
-    res.status(200).json(updatedOrder)
-   } catch (error) {
-    res.status(500).json(error)
-   }
-
-})
-
-
-// DELETE
-router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
+const deleteOrder = async (req, res) => {
     try {
         await Order.findByIdAndDelete(req.params.id)
         res.status(200).json('Order has been deleted successfully')
     } catch (error) {
         res.status(500).json(error)
     }
-})
+}
 
-
-// GET user orders
-router.get('/find/:userId', verifyTokenAndAuthorization, async (req, res) => {
+const getOrder = async (req, res) => {
     try {
         const orders = await Order.find({
             userId: req.params.userId
@@ -51,20 +42,18 @@ router.get('/find/:userId', verifyTokenAndAuthorization, async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-})
+}
 
-// //GET ALL orders
-router.get('/', verifyTokenAndAdmin, async (req, res) => {
+const getAllOrder = async (req, res) => {
     try {
         const orders = await Order.find();
         res.status(200).json(orders)
     } catch (error) {
         res.status(500).json(error)
     }
-})
+}
 
-//Get monthly income
-router.get('/income',  verifyTokenAndAdmin, async (req, res) => {
+const getIncome = async (req, res) => {
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
     const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1))
@@ -90,7 +79,6 @@ router.get('/income',  verifyTokenAndAdmin, async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-})
+}
 
-
-module.exports = router
+module.exports = { createOrder, updateOrder, deleteOrder, getOrder, getAllOrder, getIncome }
