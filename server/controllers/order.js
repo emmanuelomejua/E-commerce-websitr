@@ -1,8 +1,8 @@
 const Order = require('../models/Order');
-const { verifyTokenAndAuthorization, verifyTokenAndAdmin, verifyToken } = require('../verifyToken')
+
 
 const createOrder = async (req, res) => {
-    const newOrder = new Cart(req.body);
+    const newOrder = new Order(req.body);
 
     try {
         const savedOrder = await newOrder.save();
@@ -14,7 +14,7 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
     try {
-        const updatedOrder = await Cart.findByIdAndUpdate(req.params.id, {
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
             $set: req.body
         }, {new: true});
         res.status(200).json(updatedOrder)

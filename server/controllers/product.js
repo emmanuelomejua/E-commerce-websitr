@@ -17,9 +17,9 @@ const updateProduct = async (req, res) => {
             $set: req.body
         }, {new: true});
         res.status(200).json(updatedProduct)
-       } catch (error) {
+    } catch (error) {
         res.status(500).json(error)
-       }
+    }
 }
 
 const deleteProduct = async (req, res) => {
