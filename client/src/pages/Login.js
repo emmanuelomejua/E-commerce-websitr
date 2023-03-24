@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     width; 100vw;
     height: 100vh;
     background-size: cover;
-
+    background-image: url('../assets/1676915893233.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +13,8 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
     padding: 20px;
-    width: 40%;
-    height:  60%;
+    width: 30%;
+    height:  40%;
     background-color: lightblue;
     @media only screen and (max-width: 480px){
         border: 1px solid gray;
@@ -35,12 +36,16 @@ const Form = styled.form`
 `
 const Input = styled.input`
     flex: 1;
-    min-width: 30%;
+    min-width: 25%;
     margin: 10px 0px ;
     padding: 10px;
-    border: 1.5px solid lightblue;
+    border: none;
+    &:focus{
+        outline: 1.5px solid yellow;
+    }
+  
     @media only screen and (max-width: 480px){
-        outline: 1px solid yellow;
+        outline: .5px solid yellow;
     }
 `
 
@@ -50,7 +55,7 @@ const Agreement = styled.p`
 `
 
 const Button = styled.button`
-    width: 20%;
+    width: max-content;
     border: none;
     padding: 10px;
     cursor: pointer;
@@ -69,7 +74,7 @@ const P = styled.p`
     font-size: 14px;
 `
 
-const Link = styled.a`
+const Link1 = styled.a`
     margin: 10px 0;
     font-size: 14px;
     text-decoration: underline;
@@ -83,14 +88,14 @@ const Login = () => {
        <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-            <Input placeholder='Username'/>
+            <Input type='text' placeholder='Username'/>
     
-            <Input placeholder='Password'/>
+            <Input type='password' placeholder='Password'/>
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button>Login</Button>
-            <P>Do not have an account? <Link>Create an account</Link></P>
+            <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>
       </Wrapper>
     </Container>

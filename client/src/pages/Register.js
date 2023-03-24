@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 
 const Container = styled.div`
@@ -33,12 +34,22 @@ const Form = styled.form`
     flex-wrap: wrap;
 `
 
+const Wrap = styled.div`
+   display: flex;
+   flex-direction: column;
+`
+
 const Input = styled.input`
     flex: 1;
     min-width: 30%;
     margin: 20px 10px 0px 0px;
     padding: 10px;
-    border: 1.5px solid lightblue;
+    border: none;
+    outline: none;
+
+    &:focus{
+        outline: 1px solid yellow;
+    }
 `
 
 const Agreement = styled.p`
@@ -61,23 +72,38 @@ const Button = styled.button`
     }
 `
 
+const P = styled.p`
+    margin: 10px 0;
+    font-size: 14px;
+`
+const Link1 = styled.a`
+    margin: 10px 0;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+`
+
 const Register = () => {
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-            <Input placeholder='Name'/>
-            <Input placeholder='Lastname'/>
-            <Input placeholder='Username'/>
-            <Input placeholder='Email'/>
-            <Input placeholder='password'/>
-            <Input placeholder='Confirm Password'/>
+            <Input type='text' placeholder='Name'/>
+            <Input type='text' placeholder='Lastname'/>
+            <Input type='text' placeholder='Username'/>
+            <Input type='email' placeholder='Email'/>
+            <Input type='password' placeholder='Password'/>
+            <Input type='password' placeholder='Confirm Password'/>
 
+            <Wrap>
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button>CREATE</Button>
+            <P>Already have an account? <Link to='/login'><Link1>Login</Link1></Link></P>
+            </Wrap>
+
         </Form>
       </Wrapper>
     </Container>
