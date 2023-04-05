@@ -26,17 +26,20 @@ export const categories = [
     {
         id: 1,
         img: require('./assets/2349092821760_status_2f9e3d1e797c4536a300975c57695bd2.jpg'),
-        title: 'SHIRT STYLE'
+        title: 'SHIRT STYLE',
+        cat: "women"
     },
     {
         id: 2,
         img: require('./assets/2349092821760_status_69af0d11a8c043189c4b915833265d7b.jpg'),
-        title: 'LOUNGE JACKET'
+        title: 'LOUNGE JACKET',
+        cat: "bags"
     },
     {
         id: 3,
         img: require('./assets/2349092821760_status_e179d41ea17f47be8d3e5b9cd01fac32.jpg'),
-        title: 'LIGHT JACKET'
+        title: 'LIGHT JACKET',
+        cat: 'jeans'
     },
 ]
 

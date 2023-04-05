@@ -4,7 +4,8 @@ require('dotenv').config()
 
 const { json ,urlencoded} = require('express');
 const mongoose = require('mongoose')
-
+const {error, log} = require('console')
+const morgan = require('morgan')
 
 const { set, connect } = mongoose
 
@@ -27,6 +28,7 @@ const app = express();
 //middlewares
 app.use(json())
 app.use(urlencoded({ extended: false }));
+app.use(morgan('common'))
 
 
 //cross-origin resourses
@@ -36,6 +38,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+
+//routes use
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/products', productsRoute)
@@ -51,12 +55,16 @@ connect(db_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(()=> console.log('DB connection successful'))
-.catch((error)=> console.log(error.message))
+.then(()=> log('DB connection successful'))
+.catch((err)=> error(err.message))
 
 
 const PORT = process.env.PORT || 3500
 
-app.listen(PORT, () => {
-    console.log(`Server started at ${PORT}`)
+app.listen(PORT, (err) => {
+    if(!err){
+        log(`Server started at ${PORT}`)
+    } else {
+        error(err)
+    }
 })

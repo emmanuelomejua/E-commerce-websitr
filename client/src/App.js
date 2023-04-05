@@ -4,24 +4,24 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import Product from './pages/Product';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 
 
 const App = () => {
 
-  const user = false;
+  const user = true;
 
   return (
     <>
     <Routes>
 
-      <Route exact path='/' element={user ?<Home/> : <Login/>} />
-      <Route exact path='/products:category' element={user ?<ProductList/> : <Login/>}/>
-      <Route exact path='/product/:id' element={user ? <Product/> : <Login/>}/>
-      <Route exact path='/cart' element={user ? <Cart/> : <Login/>}/>
-      <Route path='/login'  element={!user ? <Login/>: <Home/> }/>
-      <Route path='/register' element={!user ?<Register/>: <Home/>}/>
+      <Route exact path='/' element={user ?<Home/> : <Navigate to='/login'/>} />
+      <Route exact path='/products/:category' element={user ?<ProductList/> : <Navigate to='login'/>}/>
+      <Route exact path='/product/:id' element={user ? <Product/> : <Navigate to='/login'/>}/>
+      <Route exact path='/cart' element={user ? <Cart/> : <Navigate to='/login'/>}/>
+      <Route path='/login'  element={!user ? <Login/>: <Navigate to='/'/> }/>
+      <Route path='/register' element={!user ?<Register/>: <Navigate to='/'/>}/>
 
     </Routes>
     </>

@@ -10,16 +10,23 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px auto;
 `
 
 const Wrapper = styled.div`
-    padding: 20px;
+    padding: 25px;
     width: 60%;
+    height: max-content;
     background-color: lightblue;
-    @media only screen and (max-width: 480px){
+    @media only screen and (max-width: 1024px){
         border: 1px solid gray;
         width: 75%;
-        height:  75%;
+        height: max-content;
+   } 
+    @media only screen and (max-width: 480px){
+        border: 1px solid gray;
+        width: 85%;
+        height: max-content;
    }    
 `
 
@@ -32,6 +39,7 @@ const Title = styled.h1`
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
+    margin: 10px;
 `
 
 const Wrap = styled.div`
@@ -43,7 +51,7 @@ const Input = styled.input`
     flex: 1;
     min-width: 30%;
     margin: 20px 10px 0px 0px;
-    padding: 10px;
+    padding: 15px;
     border: none;
     outline: none;
 
@@ -58,11 +66,11 @@ const Agreement = styled.p`
 `
 
 const Button = styled.button`
-    width: 25%;
     border: none;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
     font-weight: bold;
+    width: max-content;
 
 
     &:hover{
@@ -79,7 +87,8 @@ const P = styled.p`
 const Link1 = styled.a`
     margin: 10px 0;
     font-size: 14px;
-    text-decoration: underline;
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
 `
 
@@ -101,7 +110,7 @@ const Register = () => {
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button>CREATE</Button>
-            <P>Already have an account? <Link to='/login'><Link1>Login</Link1></Link></P>
+            <P>Already have an account? <Link to ='/login'><Link1>Login</Link1></Link></P>
             </Wrap>
 
         </Form>
@@ -111,15 +120,5 @@ const Register = () => {
 }
 
 export default Register
-
-
-
-
-
-
-
-
-
-
 
 

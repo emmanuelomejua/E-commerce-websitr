@@ -14,11 +14,11 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 20px;
     width: 30%;
-    height:  40%;
+    height:  max-content;
     background-color: lightblue;
     @media only screen and (max-width: 480px){
         border: 1px solid gray;
-        width: 75%;
+        width: max-content;
         height:  65%;
    }    
 `
@@ -51,7 +51,7 @@ const Input = styled.input`
 
 const Agreement = styled.p`
     font-size: 14px;
-    margin: 10px 0px;
+    margin: 15px 0px;
 `
 
 const Button = styled.button`
