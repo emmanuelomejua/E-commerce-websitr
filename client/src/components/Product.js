@@ -1,6 +1,11 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material"
+
+import { useEffect, useState } from "react"
+import { Link, useLocation } from "react-router-dom"
 import styled from "styled-components"
-import img from '../assets/2347068230847_status_ee0eb542baec4368851776d0fd2451a0.jpg'
+
+import { publicRequest } from "../requestMethod"
+
 
 const Info = styled.div`
     width: 100%;
@@ -65,17 +70,22 @@ const Icon = styled.div`
     }
 `
 
-const Product = () => {
+const Product = ({item}) => {
+
+
   return (
     <Container>
       <Circle/>
-      <Image src={img}/>
+      <Image src={item.img}/>
       <Info>
         <Icon>
             <ShoppingCartOutlined/>
         </Icon>
         <Icon>
-            <SearchOutlined/>
+           <Link to={`/product/${item._id}`} className='link'>
+             <SearchOutlined/>
+           </Link>
+           
         </Icon>
         <Icon>
             <FavoriteBorderOutlined/>

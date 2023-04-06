@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProduct } from "../data";
 import Product from "./Product";
 import axios from 'axios'
 
@@ -30,7 +29,7 @@ const Products = ({cat, filters, sort}) => {
     }
     getProduct()
   }, [cat, url2])
-  console.log(products)
+
 
   useEffect(()=>{
    cat &&  
@@ -42,7 +41,7 @@ const Products = ({cat, filters, sort}) => {
       )
   }, [cat, products, filters])
 
-  console.log(filtered)
+
 
   useEffect(()=>{
     if(sort==='newest'){
@@ -62,9 +61,11 @@ const Products = ({cat, filters, sort}) => {
   return (
     <Container>
         {
-            popularProduct.map((item)=>(
-                <Product key={item.id}/>
-            ))
+            cat ? filtered.map((item)=>(
+                <Product key={item.id} item={item}/>
+            )):  products.slice(0,9).map((item)=>(
+              <Product key={item.id} item={item}/>
+          ))
         }
     </Container>
   )

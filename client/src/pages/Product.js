@@ -5,6 +5,10 @@ import Navbar from '../components/Navbar';
 import Newsletter from '../components/Newsletter';
 import img from '../assets/2347026585038_status_3a818a8199cb457fbd560a11b57a3e88.jpg'
 import { Add, Remove } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { publicRequest } from '../requestMethod';
+import axios from 'axios';
 
 
 const Container = styled.div``
@@ -130,6 +134,26 @@ const Button = styled.button`
 
 
 const Product = () => {
+
+    const location = useLocation()
+    const id = location.pathname.split('/')[2]
+
+    const url = `http://localhost:3400/api/products/find/${id}`
+    
+    const [product, setProduct] = useState({})
+
+    useEffect(()=>{
+        const getProduct = async () => {
+            try {
+                const res = await axios.get(url)
+                setProduct(res.data)
+            } catch (error) {
+                throw(error)
+            }
+        }
+        getProduct()
+    }, [id, url])
+
   return (
     <Container>
       <Navbar/>
@@ -137,20 +161,18 @@ const Product = () => {
 
     <Wrapper>
         <ImgContainer>
-            <Image src={img}/>
+            <Image src={product.img}/>
         </ImgContainer>
         <InfoContainer>
-            <Title>Denium Jumbsuit</Title>
-            <Desc>
-                Google Web Fonts
-                To install the Material Icons font in your project using the Google Web Fonts CDN, add the following code snippet inside your project'stag: To use the font Icon component, you must first add the Material Icons font. Here are some instructions on how to do so. For instance, via Google Web Fonts</Desc>
-            <Price> $20</Price>
+            <Title>{product.title}</Title>
+            <Desc>{product.desc}</Desc>
+            <Price> ${product.price}</Price>
             <FilterContainer>
                 <Filter>
                     <FilterTitle>Color:</FilterTitle>
-                    <FilterColor color='black'/>
-                    <FilterColor color='blue'/>
-                    <FilterColor color='gray'/>
+                    {product.color?.map((c)=>(
+                         <FilterColor color={c} key={c}/>
+                    ))}
                 </Filter>
                 <Filter>
                 <FilterTitle>size</FilterTitle>
@@ -165,9 +187,9 @@ const Product = () => {
             </FilterContainer>
             <AddContainer>
                 <AmountContainer>
-                    <Add/>
+                   <Remove/>
                     <Amount>1</Amount>
-                    <Remove/>
+                    <Add/> 
                 </AmountContainer>
 
                 <Button>add to cart</Button>

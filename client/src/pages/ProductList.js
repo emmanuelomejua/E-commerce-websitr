@@ -56,7 +56,7 @@ const ProductList = () => {
 
     
     const location = useLocation()
-    const cat = location.pathname.split('/'[2])
+    const cat = location.pathname.split('/')[2]
 
     const [filters, setFiters] = useState({})
     const [sort, setSort] = useState('newest')
@@ -65,7 +65,7 @@ const ProductList = () => {
         const value = e.target.value
         setFiters({
             ...filters,
-            [e.target.name]: value
+            [e.target.name]: value.toLowerCase()
         })
     }
     
@@ -74,23 +74,23 @@ const ProductList = () => {
       <Navbar/>
       <Annoucement/>
 
-      <Title>Dresses</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
          <Filter>
             <FilterText>Filter Product:</FilterText>
             <Select name='color' onChange={handleFilters}>
                 <Option disabled defaultValue> Color</Option>
-                <Option>White</Option>
-                <Option>Black</Option>
-                <Option>Red</Option>
-                <Option>Blue</Option>
-                <Option>Yellow</Option>
-                <Option>Green</Option>
+                <Option>white</Option>
+                <Option>black</Option>
+                <Option>red</Option>
+                <Option>blue</Option>
+                <Option>yellow</Option>
+                <Option>green</Option>
             </Select>
 
             <Select name='size' onChange={handleFilters}>
                 <Option disabled defaultValue> Size</Option>
-                <Option>XS</Option>
+                <Option>XL</Option>
                 <Option>S</Option>
                 <Option>M</Option>
                 <Option>L</Option>
