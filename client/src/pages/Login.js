@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { login } from '../redux/apiCalls';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
     width; 100vw;
@@ -67,6 +70,10 @@ const Button = styled.button`
         color: white;
         transition: all .5s ease;
     }
+    &:disabled{
+        color: green;
+        cursor: not-allowed;
+    }
 `
 
 const P = styled.p`
@@ -74,27 +81,52 @@ const P = styled.p`
     font-size: 14px;
 `
 
-const Link1 = styled.a`
+const Link1 = styled.span`
     margin: 10px 0;
     font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
 `
 
+const Error = styled.span`
+    color: red;
+`
+
 
 const Login = () => {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const {loading, error} = useSelector((state) => state.user)
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        login(dispatch, {username, password})
+    }
+
   return (
     <Container>
        <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-            <Input type='text' placeholder='Username'/>
+            <Input 
+            type='text' 
+            placeholder='Username'
+            onChange={(e)=>setUsername(e.target.value)}
+            />
     
-            <Input type='password' placeholder='Password'/>
+            <Input 
+            type='password' 
+            placeholder='Password'
+            onChange={(e)=>setPassword(e.target.value)}
+            />
+
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
-            <Button>Login</Button>
+            <Button onClick={handleClick} disabled={loading}>Login</Button>
+            {error && <Error>Something went wrong</Error>}
             <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>
       </Wrapper>
