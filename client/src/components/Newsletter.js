@@ -41,6 +41,7 @@ const Input = styled.input`
     border: none;
     flex: 5;
     outline: none;
+    padding-left: 5px;
 `
 
 
@@ -49,6 +50,7 @@ const Button = styled.button`
     border: none;
     background-color: teal;
     color: white;
+   
 `
 
 const Newsletter = () => {

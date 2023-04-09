@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Annoucement from '../components/Annoucement';
 import img from '../assets/2349066014788_status_86171df7bc9a462ab7402cc82219f76e.jpg'
 import { Add, Remove } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div``
 
@@ -50,6 +51,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
     display: flex;
     justify-content: space-between;
+   
     @media only screen and (max-width: 480px){
         flex-direction: column;
     }
@@ -153,9 +155,11 @@ const Button = styled.button`
     background-color: black;
     opacity: .5;
     color: white;
+    cursor: pointer;
 `
 
 const Cart = () => {
+    // const cart = useSelector()
   return (
     <Container>
         <Navbar/>
@@ -184,9 +188,9 @@ const Cart = () => {
                         </ProductDetail>
                         <PriceDetail>
                             <ProductAmountContainer>
-                                <Add/>
+                               <Remove/>
                                 <ProductAmount>2</ProductAmount>
-                                <Remove/>
+                                <Add/>
                             </ProductAmountContainer>
                             <ProductPrice>$ 25</ProductPrice>
                         </PriceDetail>
@@ -204,9 +208,9 @@ const Cart = () => {
                         </ProductDetail>
                         <PriceDetail>
                             <ProductAmountContainer>
-                                <Add/>
+                              <Remove/>
                                 <ProductAmount>2</ProductAmount>
-                                <Remove/>
+                               <Add/>
                             </ProductAmountContainer>
                             <ProductPrice>$ 25</ProductPrice>
                         </PriceDetail>
