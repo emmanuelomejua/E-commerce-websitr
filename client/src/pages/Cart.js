@@ -160,6 +160,7 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
+    
   return (
     <Container>
         <Navbar/>
@@ -205,8 +206,8 @@ const Cart = () => {
                 <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                     <SummaryItem>
-                         <SummaryItemText>Subtotal: </SummaryItemText>
-                         <SummaryItemPrice>$40</SummaryItemPrice>
+                         <SummaryItemText>Subtotal </SummaryItemText>
+                         <SummaryItemPrice>${cart?.total}</SummaryItemPrice>
                     </SummaryItem>
 
                     <SummaryItem>
