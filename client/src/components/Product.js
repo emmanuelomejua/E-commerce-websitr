@@ -1,11 +1,7 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material"
 
-import { useEffect, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link} from "react-router-dom"
 import styled from "styled-components"
-
-import { publicRequest } from "../requestMethod"
-
 
 const Info = styled.div`
     width: 100%;

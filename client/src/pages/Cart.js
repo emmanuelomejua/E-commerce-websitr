@@ -159,7 +159,7 @@ const Button = styled.button`
 `
 
 const Cart = () => {
-    // const cart = useSelector()
+    const cart = useSelector(state=>state.cart)
   return (
     <Container>
         <Navbar/>
@@ -176,45 +176,31 @@ const Cart = () => {
             </Top> 
             <Bottom>
                 <Info>
-                    <Product>
-                        <ProductDetail>
-                            <Image src={img}/>
-                            <Details>
-                                <ProductName><b>Product: </b>LUDE WEARS</ProductName>
-                                <ProductID><b>ID: </b>5353536737388</ProductID>
-                                <ProductColor color='black'/>
-                                <ProductSize><b>Size:</b>41 </ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                               <Remove/>
-                                <ProductAmount>2</ProductAmount>
-                                <Add/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 25</ProductPrice>
-                        </PriceDetail>
-                    </Product>
-                    <Hr/>
-                    <Product>
-                        <ProductDetail>
-                            <Image src={img}/>
-                            <Details>
-                                <ProductName><b>Product: </b>LUDE WEARS</ProductName>
-                                <ProductID><b>ID: </b>5353536737388</ProductID>
-                                <ProductColor color='black'/>
-                                <ProductSize><b>Size:</b>38 </ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                              <Remove/>
-                                <ProductAmount>2</ProductAmount>
-                               <Add/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 25</ProductPrice>
-                        </PriceDetail>
-                    </Product>
+           { cart.products?.map(product => (
+            <Product>
+            <ProductDetail>
+                <Image src={product?.img}/>
+                <Details>
+                    <ProductName><b>Product: </b>{product?.title}</ProductName>
+                    <ProductID><b>ID: </b>{product?._id}</ProductID>
+                    <ProductColor color={product?.color}/>
+                    <ProductSize><b>Size:</b>{product?.size}</ProductSize>
+                </Details>
+            </ProductDetail>
+            <PriceDetail>
+                <ProductAmountContainer>
+                   <Remove/>
+                    <ProductAmount>{product?.quantity}</ProductAmount>
+                    <Add/>
+                </ProductAmountContainer>
+                <ProductPrice>$ {product?.price * product?.quantity}</ProductPrice>
+            </PriceDetail>
+        </Product>
+        
+           )) 
+            }
+                  
+                  <Hr/>
                 </Info>
                 <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>

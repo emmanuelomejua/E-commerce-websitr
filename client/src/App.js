@@ -12,14 +12,13 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
 
-  const user = useSelector(state => state.user.currentUser);
-
+  const user = true
   return (
     <>
     <Routes>
 
-      <Route exact path='/' element={<Home/> }/>
-      <Route exact path='/products/:category' element={user ?<ProductList/> : <Navigate to='login'/>}/>
+      <Route exact path='/' element={user ? <Home/> : <Navigate to='/login'/>}/>
+      <Route exact path='/products/:category' element={user ?<ProductList/> : <Navigate to='/login'/>}/>
       <Route exact path='/product/:id' element={user ? <Product/> : <Navigate to='/login'/>}/>
       <Route exact path='/cart' element={user ? <Cart/> : <Navigate to='/login'/>}/>
       <Route path='/login'  element={!user ? <Login/>: <Navigate to='/'/> }/>
