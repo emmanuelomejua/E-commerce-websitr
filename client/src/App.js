@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 const App = () => {
 
   const user = useSelector((state)=> state.user.currentUser)
+
   return (
     <>
     <Routes>
