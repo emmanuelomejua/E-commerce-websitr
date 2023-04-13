@@ -5,6 +5,7 @@ import Annoucement from '../components/Annoucement';
 import img from '../assets/2349066014788_status_86171df7bc9a462ab7402cc82219f76e.jpg'
 import { Add, Remove } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 const Container = styled.div``
 
@@ -168,7 +169,10 @@ const Cart = () => {
         <Wrapper>
             <Title>Your Bag</Title>
             <Top>
-                <TopButton>CONTINUE SHOPPING</TopButton>
+                <Link to='/'>
+                    <TopButton>CONTINUE SHOPPING</TopButton>
+                </Link>
+              
                 <TopTexts>
                     <TopText>Shopping (2)</TopText>
                     <TopText>Your Watchlist (0)</TopText>

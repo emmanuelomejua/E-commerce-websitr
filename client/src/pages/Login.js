@@ -127,6 +127,7 @@ const Login = () => {
             </Agreement>
             <Button onClick={handleClick} disabled={loading}>Login</Button>
             {error && <Error>Something went wrong</Error>}
+
             <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>
       </Wrapper>

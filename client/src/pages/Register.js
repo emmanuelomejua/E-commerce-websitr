@@ -84,7 +84,7 @@ const P = styled.p`
     margin: 10px 0;
     font-size: 14px;
 `
-const Link1 = styled.a`
+const Link1 = styled.span`
     margin: 10px 0;
     font-size: 14px;
     text-decoration: none;
