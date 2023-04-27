@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     padding: 20px;
     width: 30%;
     height:  max-content;
-    background-color: lightblue;
+    background-color: lightgray;
     @media only screen and (max-width: 480px){
         border: 1px solid gray;
         width: max-content;
@@ -90,6 +90,7 @@ const Link1 = styled.span`
 
 const Error = styled.span`
     color: red;
+    font-size: 12px;
 `
 
 
@@ -98,7 +99,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const {loading, error} = useSelector((state) => state.user)
+    const {loading, error} = useSelector(state => state.user)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -111,22 +112,22 @@ const Login = () => {
         <Title>SIGN IN</Title>
         <Form>
             <Input 
-            type='text' 
-            placeholder='Username'
-            onChange={(e)=>setUsername(e.target.value)}
+                type='text' 
+                placeholder='Username'
+                onChange={(e)=>setUsername(e.target.value)}
             />
     
             <Input 
-            type='password' 
-            placeholder='Password'
-            onChange={(e)=>setPassword(e.target.value)}
+                type='password' 
+                placeholder='Password'
+                onChange={(e)=>setPassword(e.target.value)}
             />
 
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button onClick={handleClick} disabled={loading}>Login</Button>
-            {error && <Error>Something went wrong</Error>}
+            {error && <Error>Pls enter a valid username and password</Error>}
 
             <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>
