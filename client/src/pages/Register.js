@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
+import { useFormik } from 'formik'
 
 
 const Container = styled.div`
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
     padding: 25px;
     width: 60%;
     height: max-content;
-    background-color: lightblue;
+    background-color: lightgray;
     @media only screen and (max-width: 1024px){
         border: 1px solid gray;
         width: 75%;
@@ -93,17 +94,28 @@ const Link1 = styled.span`
 `
 
 const Register = () => {
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            lastName: '',
+            userName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    })
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-            <Input type='text' placeholder='Name'/>
-            <Input type='text' placeholder='Lastname'/>
-            <Input type='text' placeholder='Username'/>
-            <Input type='email' placeholder='Email'/>
-            <Input type='password' placeholder='Password'/>
-            <Input type='password' placeholder='Confirm Password'/>
+            <Input name='name' type='text' placeholder='Name'/>
+            <Input name='lastName' type='text' placeholder='Lastname'/>
+            <Input name='userName' type='text' placeholder='Username'/>
+            <Input name='email' type='email' placeholder='Email'/>
+            <Input name='password' type='password' placeholder='Password'/>
+            <Input name='confirmPassword' type='password' placeholder='Confirm Password'/>
 
             <Wrap>
             <Agreement>

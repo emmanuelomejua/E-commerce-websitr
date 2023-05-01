@@ -5,8 +5,8 @@ import Annoucement from '../components/Annoucement';
 import { Add, Remove } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
-import StripeCheckout from 'react-stripe-checkout'
+// import { useState } from 'react';
+// import StripeCheckout from 'react-stripe-checkout'
 
 const Container = styled.div``
 
@@ -163,7 +163,7 @@ const Button = styled.button`
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
 
-    const [stripeToken, setStripeToken] = useState(null)
+    // const [stripeToken, setStripeToken] = useState(null)
     
   return (
     <Container>
