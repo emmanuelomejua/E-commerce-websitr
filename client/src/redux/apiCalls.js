@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginFailure, loginStart, loginSuccess } from "./userReducer";
+import { loginFailure, loginStart, loginSuccess, logout } from "./userReducer";
 import { loginRoute } from "../utils/APIcalls";
 
 export const login = async (dispatch, user) => {
@@ -13,6 +13,6 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const logout = async (dispatch, user) => {
-    dispatch(logout, user)
+export const Logout = async (dispatch, user) => {
+    dispatch(logout())
 }

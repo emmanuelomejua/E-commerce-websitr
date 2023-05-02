@@ -96,14 +96,14 @@ const Error = styled.span`
 
 const Login = () => {
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const {loading, error} = useSelector(state => state.user)
 
     const handleClick = (e) => {
         e.preventDefault()
-        login(dispatch, {username, password})
+        login(dispatch, {email, password})
     }
 
   return (
@@ -112,9 +112,9 @@ const Login = () => {
         <Title>SIGN IN</Title>
         <Form>
             <Input 
-                type='text' 
-                placeholder='Username'
-                onChange={(e)=>setUsername(e.target.value)}
+                type='email' 
+                placeholder='Email'
+                onChange={(e)=>setEmail(e.target.value)}
             />
     
             <Input 

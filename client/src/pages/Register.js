@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
+import './test.css'
+import { registrationSchema } from '../schema';
 
 
 const Container = styled.div`
@@ -15,8 +17,8 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-    padding: 25px;
-    width: 60%;
+    padding: 25px 5px;
+    width:  max-content;
     height: max-content;
     background-color: lightgray;
     @media only screen and (max-width: 1024px){
@@ -38,9 +40,12 @@ const Title = styled.h1`
 `
 
 const Form = styled.form`
+    // display: block;
     display: flex;
-    flex-wrap: wrap;
-    margin: 10px;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25%;
+    
 `
 
 const Wrap = styled.div`
@@ -50,11 +55,12 @@ const Wrap = styled.div`
 
 const Input = styled.input`
     flex: 1;
-    min-width: 30%;
-    margin: 20px 10px 0px 0px;
     padding: 15px;
     border: none;
+    height: 40px;
     outline: none;
+    margin: 10px;
+    width: 300px;
 
     &:focus{
         outline: 1px solid yellow;
@@ -63,7 +69,8 @@ const Input = styled.input`
 
 const Agreement = styled.p`
     font-size: 14px;
-    margin: 10px 0px;
+    margin: 10px;
+    width: 75%;
 `
 
 const Button = styled.button`
@@ -72,6 +79,7 @@ const Button = styled.button`
     cursor: pointer;
     font-weight: bold;
     width: max-content;
+    margin-left: 10px;
 
 
     &:hover{
@@ -93,29 +101,70 @@ const Link1 = styled.span`
     cursor: pointer;
 `
 
+const Error = styled.span`
+    color: crimson;
+    font-size: 12px;
+    margin-left: 10px;
+`
+
+
 const Register = () => {
 
-    const formik = useFormik({
+    const  {handleChange, handleBlur, errors, handleSubmit, touched } = useFormik({
         initialValues: {
-            name: '',
-            lastName: '',
-            userName: '',
+            fullName: '',
             email: '',
             password: '',
             confirmPassword: ''
-        }
+        }, 
+        validationSchema: registrationSchema
     })
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-            <Input name='name' type='text' placeholder='Name'/>
-            <Input name='lastName' type='text' placeholder='Lastname'/>
-            <Input name='userName' type='text' placeholder='Username'/>
-            <Input name='email' type='email' placeholder='Email'/>
-            <Input name='password' type='password' placeholder='Password'/>
-            <Input name='confirmPassword' type='password' placeholder='Confirm Password'/>
+          
+                <Input 
+                //  value={values}
+                onChange={handleChange} 
+                name='fullName' 
+                type='text' 
+                placeholder='FullName' 
+                onBlur={handleBlur}
+                />
+            {errors.name && touched.name && <Error>{errors.name}</Error>}
+        
+
+                    <Input 
+                    //  value={values}
+                    onChange={handleChange} 
+                    name='email' 
+                    type='email' 
+                    placeholder='Email'
+                    onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email && <Error>{errors.email}</Error>}
+  
+                <Input 
+                //  value={values}
+                onChange={handleChange} 
+                name='password' 
+                type='password' 
+                placeholder='Password'
+                onBlur={handleBlur}
+                />
+                {errors.password && touched.password && <Error>{errors.password}</Error>}
+        
+                <Input 
+                //  value={values}
+                onChange={handleChange}
+                name='confirmPassword' 
+                type='password' 
+                placeholder='Confirm Password'
+                />
+                {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
+
 
             <Wrap>
             <Agreement>

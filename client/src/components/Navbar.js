@@ -3,7 +3,7 @@ import { Search, ShoppingCartOutlined } from '@mui/icons-material'
 import { Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout } from "../redux/apiCalls";
+import { Logout } from "../redux/apiCalls";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -99,7 +99,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
 
     const handleLogout = () => {
-       logout(dispatch, {user})
+       Logout(dispatch, user)
     }
    
   return (
@@ -118,32 +118,8 @@ const Navbar = () => {
             </Logo>
         </Center>
         <Right>
-            {
-                !user ? 
-                (
-                    <>
-                     <Link to='/register' className="link">
-                      <MenuItem>Regiser</MenuItem> 
-                      </Link>
-                     <Link to='/login' className="link"> 
-                     <MenuItem>Sign In</MenuItem>
-                     </Link>
-                    </>
-               
-                ) : 
-
-                (
-                    <>
-                     <Link to='/login' className="link"> 
-                        <MenuItem onClick={handleLogout}>Log out</MenuItem>
-                     </Link>
-                    </>
-                )
-
-            }
-       
-               
-                <Link to='/cart' className="link">
+             <MenuItem onClick={handleLogout}>Log out</MenuItem>    
+            <Link to='/cart' className="link">
                 <MenuItem>
                     <Badge badgeContent={quantity} color='primary'>
                     <ShoppingCartOutlined/>
