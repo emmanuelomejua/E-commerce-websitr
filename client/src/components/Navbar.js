@@ -4,7 +4,6 @@ import { Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logout } from "../redux/apiCalls";
-import { useState } from "react";
 
 const Container = styled.div`
     height: 60px;
@@ -95,11 +94,11 @@ const Navbar = () => {
     const quantity = useSelector(state=>state.cart.quantity)
     const user = useSelector(state => state.user.currentUser)
 
-
     const dispatch = useDispatch()
 
     const handleLogout = () => {
        Logout(dispatch, user)
+       
     }
    
   return (
