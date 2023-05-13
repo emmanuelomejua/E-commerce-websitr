@@ -1,17 +1,17 @@
 import * as yup from 'yup'
 
 export const registrationSchema = yup.object().shape({
+    fullName: yup
+    .string()
+    .required('Required')
+    .min(4, ['Pls, provide your valid credential'])
+    .max(25, ['This field should not exceed 25 characters']),
     email: yup
     .string()
     .email('Please enter a valid email')
     .required('This is a required field')
     .min(4, ['Email must be a minimum of 4 characters'])
     .max(25, ['Email must be not exceed 25 characters']),
-    fullName: yup
-    .string()
-    .min(4, ['Email must be a minimum of 4 characters'])
-    .max(25, ['Email must be not exceed 25 characters'])
-    .required('Required'),
     password: yup
     .string()
     .required('Required')
@@ -20,5 +20,5 @@ export const registrationSchema = yup.object().shape({
     confirmPassword:  yup
     .string()
     .required('Required')
-    .oneOf([yup.ref(`password`)], 'Confirm password & Password must match')
+    .oneOf([yup.ref("password")], 'Confirm password & Password must match')
 })

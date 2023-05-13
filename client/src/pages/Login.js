@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { login } from '../redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { registrationSchema } from '../schema';
 
 const Container = styled.div`
-    width; 100vw;
+    width: 100vw;
     height: 100vh;
     background-size: cover;
     background-image: url('../assets/1676915893233.jpg');
@@ -28,7 +30,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
     font-size: 24px;
-    font-weight; 300;
+    font-weight: 300;
     text-align: center;
 `
 
@@ -101,6 +103,14 @@ const Login = () => {
     const dispatch = useDispatch();
     const {loading, error} = useSelector(state => state.user)
 
+    const {errors, touched, handleBlur,} = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: registrationSchema
+    })
+
     const handleClick = (e) => {
         e.preventDefault()
         login(dispatch, {email, password})
@@ -114,14 +124,18 @@ const Login = () => {
             <Input 
                 type='email' 
                 placeholder='Email'
+                onBlur={handleBlur}
                 onChange={(e)=>setEmail(e.target.value)}
             />
+            {errors.email && touched.email && <Error>{errors.email}</Error>}
     
             <Input 
                 type='password' 
                 placeholder='Password'
+                onBlur={handleBlur}
                 onChange={(e)=>setPassword(e.target.value)}
             />
+            {errors.password && touched.password && <Error>{errors.password}</Error>}
 
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>

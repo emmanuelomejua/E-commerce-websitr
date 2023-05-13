@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
-import './test.css'
 import { registrationSchema } from '../schema';
 
 
 const Container = styled.div`
-    width; 100vw;
+    width: 100vw;
     height: 100vh;
     background-size: cover;
 
@@ -35,7 +34,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
     font-size: 24px;
-    font-weight; 300;
+    font-weight: 300;
     text-align: center;
 `
 
@@ -115,7 +114,7 @@ const Register = () => {
             fullName: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
         }, 
         validationSchema: registrationSchema
     })
@@ -133,7 +132,7 @@ const Register = () => {
                 placeholder='FullName' 
                 onBlur={handleBlur}
                 />
-            {errors.name && touched.name && <Error>{errors.name}</Error>}
+            {errors.fullName && touched.fullName && <Error>{errors.fullName}</Error>}
         
 
                     <Input 
@@ -163,7 +162,7 @@ const Register = () => {
                 type='password' 
                 placeholder='Confirm Password'
                 />
-                {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
+               {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
 
 
             <Wrap>
