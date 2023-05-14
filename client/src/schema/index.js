@@ -19,6 +19,7 @@ export const registrationSchema = yup.object().shape({
     .max(25, ['Password must be not exceed 25 characters']),
     confirmPassword:  yup
     .string()
+    .oneOf([yup.ref("password"), null], 'Password and confirm password must match')
     .required('Required')
-    .oneOf([yup.ref("password")], 'Confirm password & Password must match')
+    
 })

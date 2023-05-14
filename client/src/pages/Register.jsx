@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { registrationSchema } from '../schema';
+import axios from 'axios'
+import { useEffect } from 'react';
 
 
 const Container = styled.div`
@@ -104,28 +106,44 @@ const Error = styled.span`
     color: crimson;
     font-size: 12px;
     margin-left: 10px;
+    margin-top: 5px;
 `
 
 
 const Register = () => {
+    const url = 'http://localhost:3400/api/auth/register'
+ 
 
-    const  {handleChange, handleBlur, errors, handleSubmit, touched } = useFormik({
+    const onSubmit = useEffect(() => {
+        const regInfo = async () => {
+            const res = await axios.post(url)
+            res.data()
+        }
+        regInfo()
+    }, [url])
+  
+
+    const  {handleChange, handleBlur, values,  errors, handleSubmit, touched } = useFormik({
         initialValues: {
             fullName: '',
             email: '',
             password: '',
             confirmPassword: '',
         }, 
-        validationSchema: registrationSchema
+        validationSchema: registrationSchema,
+        onSubmit,
     })
+
+    console.log(values)
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           
                 <Input 
-                //  value={values}
+                 value={values.fullName}
                 onChange={handleChange} 
                 name='fullName' 
                 type='text' 
@@ -136,7 +154,7 @@ const Register = () => {
         
 
                     <Input 
-                    //  value={values}
+                     value={values.email}
                     onChange={handleChange} 
                     name='email' 
                     type='email' 
@@ -146,7 +164,7 @@ const Register = () => {
                     {errors.email && touched.email && <Error>{errors.email}</Error>}
   
                 <Input 
-                //  value={values}
+                 value={values.password}
                 onChange={handleChange} 
                 name='password' 
                 type='password' 
@@ -156,7 +174,7 @@ const Register = () => {
                 {errors.password && touched.password && <Error>{errors.password}</Error>}
         
                 <Input 
-                //  value={values}
+                 value={values.confirmPassword}
                 onChange={handleChange}
                 name='confirmPassword' 
                 type='password' 
@@ -169,7 +187,7 @@ const Register = () => {
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
-            <Button>CREATE</Button>
+            <Button type='submit'>CREATE</Button>
             <P>Already have an account? <Link to ='/login'><Link1>Login</Link1></Link></P>
             </Wrap>
 

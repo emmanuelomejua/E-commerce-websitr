@@ -2,15 +2,7 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose
 
 const userSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    userName: {
+    fullName: {
         type: String,
         required: true
     },
@@ -21,7 +13,9 @@ const userSchema = new Schema({
     },
     password: {
         required: true,
-        type: String
+        type: String,
+        min: [4, 'Password must contain minmum of 4 characters'],
+        min: [25, 'Password should not exceed 25 characters'],
     },
     isAdmin: {
         type: Boolean,

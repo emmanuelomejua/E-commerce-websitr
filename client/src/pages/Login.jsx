@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { login } from '../redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import { registrationSchema } from '../schema';
+
 
 const Container = styled.div`
     width: 100vw;
@@ -93,6 +92,7 @@ const Link1 = styled.span`
 const Error = styled.span`
     color: red;
     font-size: 12px;
+    margin-top: 5px;
 `
 
 
@@ -103,13 +103,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const {loading, error} = useSelector(state => state.user)
 
-    const {errors, touched, handleBlur,} = useFormik({
-        initialValues: {
-            email: '',
-            password: ''
-        },
-        validationSchema: registrationSchema
-    })
+
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -124,24 +118,21 @@ const Login = () => {
             <Input 
                 type='email' 
                 placeholder='Email'
-                onBlur={handleBlur}
                 onChange={(e)=>setEmail(e.target.value)}
             />
-            {errors.email && touched.email && <Error>{errors.email}</Error>}
     
             <Input 
                 type='password' 
                 placeholder='Password'
-                onBlur={handleBlur}
                 onChange={(e)=>setPassword(e.target.value)}
             />
-            {errors.password && touched.password && <Error>{errors.password}</Error>}
+           
 
             <Agreement>
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button onClick={handleClick} disabled={loading}>Login</Button>
-            {error && <Error>Pls enter a valid username and password</Error>}
+            {error && <Error>Pls enter a valid email and password to login</Error>}
 
             <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>
