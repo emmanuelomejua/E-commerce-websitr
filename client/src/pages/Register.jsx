@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { registrationSchema } from '../schema';
 import axios from 'axios'
-import { useEffect } from 'react';
+
 
 
 const Container = styled.div`
@@ -63,9 +63,9 @@ const Input = styled.input`
     margin: 10px;
     width: 300px;
 
-    &:focus{
+    /* &:focus{
         outline: 1px solid yellow;
-    }
+    } */
 `
 
 const Agreement = styled.p`
@@ -113,14 +113,22 @@ const Error = styled.span`
 const Register = () => {
     const url = 'http://localhost:3400/api/auth/register'
  
+    const navigate = useNavigate()
 
-    const onSubmit = useEffect(() => {
-        const regInfo = async () => {
-            const res = await axios.post(url)
-            res.data()
+    const onSubmit = async () => {
+        const {fullName, email, password} = values
+        try{
+            const res = await axios.post(url, {
+                fullName,
+                email,
+                password
+            })
+            res.data && window.location.replace('/login')
+        }catch(err){
+            console.error(err)
         }
-        regInfo()
-    }, [url])
+
+    }
   
 
     const  {handleChange, handleBlur, values,  errors, handleSubmit, touched } = useFormik({
@@ -131,7 +139,7 @@ const Register = () => {
             confirmPassword: '',
         }, 
         validationSchema: registrationSchema,
-        onSubmit,
+        onSubmit
     })
 
     console.log(values)
@@ -160,25 +168,27 @@ const Register = () => {
                     type='email' 
                     placeholder='Email'
                     onBlur={handleBlur}
+                    className={errors.email ? "errr" : ''}
                     />
                     {errors.email && touched.email && <Error>{errors.email}</Error>}
   
                 <Input 
-                 value={values.password}
-                onChange={handleChange} 
-                name='password' 
-                type='password' 
-                placeholder='Password'
-                onBlur={handleBlur}
+                    value={values.password}
+                    onChange={handleChange} 
+                    name='password' 
+                    type='password' 
+                    placeholder='Password'
+                    onBlur={handleBlur}
                 />
                 {errors.password && touched.password && <Error>{errors.password}</Error>}
         
                 <Input 
-                 value={values.confirmPassword}
-                onChange={handleChange}
-                name='confirmPassword' 
-                type='password' 
-                placeholder='Confirm Password'
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    name='confirmPassword' 
+                    type='password' 
+                    placeholder='Confirm Password'
+                    pattern={values.password}
                 />
                {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
 

@@ -19,7 +19,7 @@ const Register = async (req, res) => {
     if(!isExists){
         const { fullName, email, password } = req.body
         try {
-            const user = await User.create({
+            const user = new User({
                 fullName,
                 email,
                 password: encryptedPassword(password)
@@ -42,7 +42,7 @@ const Register = async (req, res) => {
 const Login = async (req, res) => { 
 
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({email: req.body.email});
         if(!user){
             return res.status(401).json('Invalid credentials')
         } else {
