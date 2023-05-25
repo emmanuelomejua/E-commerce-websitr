@@ -1,23 +1,16 @@
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
 import "./App.css";
-import Home from "./pages/home/Home";
+import {Home, Login, UserList, User, NewUser, ProductList, Product, NewProduct} from "./pages";
 import { Routes, Route } from "react-router-dom";
-import UserList from "./pages/userList/UserList";
-import User from "./pages/user/User";
-import NewUser from "./pages/newUser/NewUser";
-import ProductList from "./pages/productList/ProductList";
-import Product from "./pages/product/Product";
-import NewProduct from "./pages/newProduct/NewProduct";
+
 
 function App() {
   return (
    
     <>
-      <Topbar />
-        <div className="container">
-          <Sidebar />
+
         <Routes>
+
+           <Route path='/login' element={<Login/>}/>
         
             <Route exact path="/" element={ <Home />}/>
             
@@ -34,7 +27,7 @@ function App() {
             <Route path="/newproduct" element={<NewProduct />}/>
           
       </Routes>
-        </div>
+       
     </>
   );
 }

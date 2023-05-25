@@ -1,3 +1,14 @@
+.i{
+  display: flex;
+  flex-direction: column
+}
+
+.container{
+  flex: 1;
+  display: flex;
+  margin-top: 10px;
+}
+
 .newProduct {
   flex: 4;
 }

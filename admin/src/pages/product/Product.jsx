@@ -3,9 +3,14 @@ import "./product.css";
 import Chart from "../../components/chart/Chart"
 import {productData} from "../../dummyData"
 import { Publish } from "@mui/icons-material";
+import { Sidebar, Topbar } from "../../components";
 
 export default function Product() {
   return (
+    <main className="i">
+        <Topbar/>
+        <section className="container">
+        <Sidebar/>
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Product</h1>
@@ -71,5 +76,7 @@ export default function Product() {
           </form>
       </div>
     </div>
+        </section>
+    </main>
   );
 }

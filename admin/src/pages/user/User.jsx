@@ -1,3 +1,4 @@
+import { Topbar, Sidebar } from "../../components";
 import {
   CalendarToday,
   LocationSearching,
@@ -11,6 +12,11 @@ import "./user.css";
 
 export default function User() {
   return (
+    <main className="i">
+      <Topbar/>
+      <section className="container">
+      <Sidebar/>
+
     <div className="user">
       <div className="userTitleContainer">
         <h1 className="userTitle">Edit User</h1>
@@ -107,7 +113,7 @@ export default function User() {
                   className="userUpdateImg"
                   src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                   alt=""
-                />
+                  />
                 <label htmlFor="file">
                   <Publish className="userUpdateIcon" />
                 </label>
@@ -119,5 +125,7 @@ export default function User() {
         </div>
       </div>
     </div>
+   </section>
+    </main>
   );
 }

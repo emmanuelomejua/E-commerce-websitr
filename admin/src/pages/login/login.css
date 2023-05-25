@@ -1,0 +1,29 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('../../assets/bg.jpeg');
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+}
+
+form > input{
+    padding: 10px;
+    outline: none;
+    border: none;
+}
+
+.btn{
+   width: 100%;
+   padding: 10px;
+   border: none;
+   background-color: teal;
+   color: #fff;
+   cursor: pointer;
+}
