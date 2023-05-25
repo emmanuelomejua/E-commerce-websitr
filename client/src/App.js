@@ -1,9 +1,4 @@
-import Cart from './pages/Cart';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import ProductList from './pages/ProductList';
-import Product from './pages/Product';
+import { Cart, Login, Register, Home, Product, ProductList} from './pages';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom'
 import Success from './pages/Success';
 import { useSelector } from 'react-redux';

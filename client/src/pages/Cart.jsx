@@ -1,12 +1,8 @@
 import styled from 'styled-components';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Annoucement from '../components/Annoucement';
+import { Navbar, Footer, Annoucement } from '../components';
 import { Add, Remove } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-// import { useState } from 'react';
-// import StripeCheckout from 'react-stripe-checkout'
 
 const Container = styled.div``
 
@@ -163,7 +159,6 @@ const Button = styled.button`
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
 
-    // const [stripeToken, setStripeToken] = useState(null)
     
   return (
     <Container>

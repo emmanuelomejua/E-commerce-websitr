@@ -60,10 +60,10 @@ const Icon = styled.div`
     transition: all .5s ease;
     cursor: pointer;
     
-    &: hover{
+    /* &. hover{
         background-color: #e9f5f5;
         transform: scale(1.2);
-    }
+    } */
 `
 
 const Product = ({item}) => {

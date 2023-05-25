@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import Annoucement from '../components/Annoucement';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import Newsletter from '../components/Newsletter';
+import {Annoucement, Footer, Navbar, Newsletter } from '../components';
 import { Add, Remove } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -49,7 +46,7 @@ const Desc  = styled.p`
 `
 
 const Title = styled.h1`
-    font-weight; 200;
+    font-weight: 200;
 `
 
 const Price = styled.span`
@@ -127,9 +124,9 @@ const Button = styled.button`
     font-weight: 600;
     text-transform: Capitalize;
 
-    &: hover{
+    /* &: hover{
         background-color: #e9f5f5;
-    }
+    } */
 `
 
 

@@ -12,6 +12,7 @@ import {
   ChatBubbleOutline,
   WorkOutline,
   Report,
+  ExitToAppRounded,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -94,6 +95,10 @@ export default function Sidebar() {
             <li className="sidebarListItem">
               <Report className="sidebarIcon" />
               Reports
+            </li>
+            <li className="sidebarListItem">
+              <ExitToAppRounded className="sidebarIcon" />
+              Logout
             </li>
           </ul>
         </div>

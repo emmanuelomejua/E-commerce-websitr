@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import Annoucement from '../components/Annoucement';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import Newsletter from '../components/Newsletter';
-import Products from '../components/Products';
+import { Annoucement, Footer, Navbar, Newsletter, Products } from '../components';
+
 
 const Container = styled.div`
     margin: 20px;
