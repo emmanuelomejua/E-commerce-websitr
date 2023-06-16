@@ -7,7 +7,7 @@ export const login = async (dispatch, user) => {
     dispatch(loginStart());
     try {
         const res = await axios.post(loginRoute, user)
-        dispatch(loginSuccess(res.data));
+        dispatch(loginSuccess(res.data)) && window.location.replace('/')
     } catch (error) {
         dispatch(loginFailure())
     }

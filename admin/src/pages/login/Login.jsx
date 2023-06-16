@@ -1,13 +1,18 @@
+import { useDispatch } from 'react-redux'
 import './login.css'
 import { useState } from 'react'
+import { login } from '../../redux/apiCalls'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch = useDispatch()
+
     const handleClick = (e) => {
         e.preventDefault()
+        login(dispatch(email, password))
     }
     
     return(

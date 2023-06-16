@@ -1,13 +1,11 @@
 import "./App.css";
 import { Home, Login, UserList, User, NewUser, ProductList, Product, NewProduct} from "./pages";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 
 function App() {
   return (
-   
-    <>
-
+      <BrowserRouter>
         <Routes>
 
            <Route path='/login' element={<Login/>}/>
@@ -27,8 +25,8 @@ function App() {
             <Route path="/newproduct" element={<NewProduct />}/>
           
       </Routes>
+      </BrowserRouter>
        
-    </>
   );
 }
 
