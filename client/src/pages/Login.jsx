@@ -90,7 +90,7 @@ const Link1 = styled.span`
 `
 
 const Error = styled.span`
-    color: red;
+    color: crimson;
     font-size: 12px;
     margin-top: 5px;
 `
@@ -132,7 +132,7 @@ const Login = () => {
                 By creating an account, I consent to the processing of my data in accordance with the <strong>PRIVACY POLICY</strong>
             </Agreement>
             <Button onClick={handleClick} disabled={loading}>Login</Button>
-            {error && <Error>Pls enter a valid email and password to login</Error>}
+            {error && <Error>Pls enter a valid email and password to continue</Error>}
 
             <P>Do not have an account? <Link to='/register'><Link1>Create an account</Link1></Link></P>
         </Form>

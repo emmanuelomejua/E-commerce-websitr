@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { registrationSchema } from '../schema';
 import axios from 'axios'
+import './error.css'
 
 
 
@@ -113,7 +114,7 @@ const Error = styled.span`
 const Register = () => {
     const url = 'http://localhost:3400/api/auth/register'
  
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const onSubmit = async () => {
         const {fullName, email, password} = values
@@ -151,24 +152,25 @@ const Register = () => {
         <Form onSubmit={handleSubmit}>
           
                 <Input 
-                 value={values.fullName}
-                onChange={handleChange} 
-                name='fullName' 
-                type='text' 
-                placeholder='FullName' 
-                onBlur={handleBlur}
+                    value={values.fullName}
+                    onChange={handleChange} 
+                    name='fullName' 
+                    type='text' 
+                    placeholder='FullName' 
+                    onBlur={handleBlur}
+                    className={errors.fullName ? "input-error" : ''}
                 />
             {errors.fullName && touched.fullName && <Error>{errors.fullName}</Error>}
         
 
                     <Input 
-                     value={values.email}
-                    onChange={handleChange} 
-                    name='email' 
-                    type='email' 
-                    placeholder='Email'
-                    onBlur={handleBlur}
-                    className={errors.email ? "errr" : ''}
+                        value={values.email}
+                        onChange={handleChange} 
+                        name='email' 
+                        type='email' 
+                        placeholder='Email'
+                        onBlur={handleBlur}
+                        className={errors.email ? "input-error" : ''}
                     />
                     {errors.email && touched.email && <Error>{errors.email}</Error>}
   
@@ -179,6 +181,7 @@ const Register = () => {
                     type='password' 
                     placeholder='Password'
                     onBlur={handleBlur}
+                    className={errors.password ? "input-error" : ''}
                 />
                 {errors.password && touched.password && <Error>{errors.password}</Error>}
         
@@ -189,6 +192,7 @@ const Register = () => {
                     type='password' 
                     placeholder='Confirm Password'
                     pattern={values.password}
+                    className={errors.confirmPassword ? "input-error" : ''}
                 />
                {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
 
