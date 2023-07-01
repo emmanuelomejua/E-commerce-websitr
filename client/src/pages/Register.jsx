@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { registrationSchema } from '../schema';
 import axios from 'axios'
 import './error.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
@@ -11,27 +13,32 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
     background-size: cover;
-
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0px auto;
+    background-image: url('https://img.ssensemedia.com/images/f_auto,q_auto:best/222451F048073_1/gucci-beige-large-attache-shoulder-bag.jpg');
 `
 
 const Wrapper = styled.div`
     padding: 25px 5px;
     width:  max-content;
     height: max-content;
+    color: #222;
+    font: 12px bold;
     background-color: lightgray;
     @media only screen and (max-width: 1024px){
-        border: 1px solid gray;
-        width: 75%;
-        height: max-content;
+        padding: 10px;
    } 
-    @media only screen and (max-width: 480px){
+    @media only screen and (max-width: 550px){
         border: 1px solid gray;
         width: 85%;
         height: max-content;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0;
    }    
 `
 
@@ -39,15 +46,17 @@ const Title = styled.h1`
     font-size: 24px;
     font-weight: 300;
     text-align: center;
+    margin-bottom: 10px;
 `
 
 const Form = styled.form`
-    // display: block;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 25%;
-    
+    @media only screen and (max-width: 550px){
+        margin: auto;
+   }  
 `
 
 const Wrap = styled.div`
@@ -63,16 +72,19 @@ const Input = styled.input`
     outline: none;
     margin: 10px;
     width: 300px;
-
-    /* &:focus{
-        outline: 1px solid yellow;
-    } */
+    @media only screen and (max-width: 550px){
+        width: 240px;
+   }
 `
 
 const Agreement = styled.p`
     font-size: 14px;
     margin: 10px;
     width: 75%;
+    @media only screen and (max-width: 550px){
+        font-size: 10px;
+        color: #222;
+   }
 `
 
 const Button = styled.button`
@@ -107,14 +119,22 @@ const Error = styled.span`
     color: crimson;
     font-size: 12px;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 2.5px;
 `
 
 
 const Register = () => {
     const url = 'http://localhost:3400/api/auth/register'
- 
-    // const navigate = useNavigate()
+
+    const toastOptions = {
+        position: 'bottom-right',
+        draggable: true,
+        pauseOnHover: true,
+        autoClose: 8000,
+        theme: 'light',
+        // color: '#222'
+    }
+
 
     const onSubmit = async () => {
         const {fullName, email, password} = values
@@ -126,7 +146,7 @@ const Register = () => {
             })
             res.data && window.location.replace('/login')
         }catch(err){
-            console.error(err)
+           toast('Please enter a valid details to register, or login if account already exist', toastOptions)
         }
 
     }
@@ -146,6 +166,7 @@ const Register = () => {
     console.log(values)
 
   return (
+    <>
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
@@ -161,7 +182,6 @@ const Register = () => {
                     className={errors.fullName ? "input-error" : ''}
                 />
             {errors.fullName && touched.fullName && <Error>{errors.fullName}</Error>}
-        
 
                     <Input 
                         value={values.email}
@@ -171,7 +191,7 @@ const Register = () => {
                         placeholder='Email'
                         onBlur={handleBlur}
                         className={errors.email ? "input-error" : ''}
-                    />
+                        />
                     {errors.email && touched.email && <Error>{errors.email}</Error>}
   
                 <Input 
@@ -182,18 +202,19 @@ const Register = () => {
                     placeholder='Password'
                     onBlur={handleBlur}
                     className={errors.password ? "input-error" : ''}
-                />
+                    />
                 {errors.password && touched.password && <Error>{errors.password}</Error>}
         
                 <Input 
                     value={values.confirmPassword}
                     onChange={handleChange}
+                    required
                     name='confirmPassword' 
                     type='password' 
                     placeholder='Confirm Password'
                     pattern={values.password}
                     className={errors.confirmPassword ? "input-error" : ''}
-                />
+                    />
                {errors.confirmPassword && touched.confirmPassword && <Error>{errors.confirmPassword}</Error>}
 
 
@@ -208,6 +229,8 @@ const Register = () => {
         </Form>
       </Wrapper>
     </Container>
+    <ToastContainer/>
+    </>
   )
 }
 
