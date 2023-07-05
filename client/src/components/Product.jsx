@@ -21,7 +21,7 @@ const Info = styled.div`
 const Container = styled.div`
     flex: 1;
     margin: 5px;
-    min-width: 220px;
+    width: 220px;
     height: 300px;
     display: flex;
     justify-content: center;
@@ -60,10 +60,10 @@ const Icon = styled.div`
     transition: all .5s ease;
     cursor: pointer;
     
-    /* &. hover{
+    &:hover{
         background-color: #e9f5f5;
         transform: scale(1.2);
-    } */
+    }
 `
 
 const Product = ({item}) => {

@@ -118,8 +118,12 @@ const Link1 = styled.span`
 const Error = styled.span`
     color: crimson;
     font-size: 12px;
-    margin-left: 10px;
+    margin-left: 12px;
     margin-top: 2.5px;
+    @media only screen and (max-width: 550px){
+       margin-top: 1px;
+       font-size: 8px;
+   }
 `
 
 

@@ -21,6 +21,7 @@ const authRoute = require('./routes/authRoute')
 const productsRoute = require('./routes/productRoute')
 const orderRoute = require('./routes/orderRoute')
 const cartRoute = require('./routes/cartRoute')
+const paystackRoute = require('./routes/paystackRoute')
 
 //bind with express server
 const app = express();
@@ -45,6 +46,7 @@ app.use('/api/auth', authRoute)
 app.use('/api/products', productsRoute)
 app.use('/api/order', orderRoute)
 app.use('/api/cart', cartRoute)
+app.use('/api/paystack', paystackRoute)
 
 //DB config
 set('strictQuery', true)

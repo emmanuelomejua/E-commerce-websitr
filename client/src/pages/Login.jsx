@@ -44,10 +44,8 @@ const Input = styled.input`
     margin: 10px;
     padding: 10px;
     border: none;
-    outline: .5px solid yellow;
   
     @media only screen and (max-width: 480px){
-        outline: .5px solid yellow;
         width: 240px;
         padding: 15px;
     }
@@ -95,11 +93,6 @@ const Link1 = styled.span`
     cursor: pointer;
 `
 
-const Error = styled.span`
-    color: crimson;
-    font-size: 12px;
-    margin-top: 2.5px;
-`
 
 
 const Login = () => {
@@ -107,7 +100,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const {loading, error} = useSelector(state => state.user)
+    const { loading } = useSelector(state => state.user)
 
     const toastOptions = {
         position: 'top-right',
@@ -134,7 +127,7 @@ const Login = () => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        if( handleValidation()){
+        if(handleValidation()){
             login(dispatch, {email, password})
         }
     }
